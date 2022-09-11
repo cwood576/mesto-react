@@ -1,7 +1,7 @@
 import React from 'react'
 import '../index.css';
 
-function PopupImage(props) {
+function ImagePopup(props) {
     return (
         <>
             <div className={`popup popup_name_image ${props.isOpen ? "popup_opened" : ""}`}>
