@@ -1,0 +1,56 @@
+.profile__image {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    background-size: cover;
+    margin: 0 30px 0 0;
+    background-position: center;
+}
+.profile__image::after{
+    content: "";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 1);
+    position: absolute;
+    background-image: url(../../../images/pen.svg);
+    background-repeat: no-repeat;
+    background-size: 30%;
+    background-position: center;
+    z-index: 3;
+    width:  inherit;
+    height: inherit;
+    transition: 0.5s;
+    opacity: 0;
+    border-radius: 50%;
+
+}
+.profile__image:hover::after{
+    width:  inherit;
+    height: inherit;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1279px) {
+    .profile__image {
+        width: calc(120 / 1280 * 100vw);
+        height: calc(120 / 1280 * 100vw);
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .profile__image {
+        width: calc(120 / 1024 * 100vw);
+        height: calc(120 / 1024 * 100vw);
+        margin: 0 18px 0 0;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .profile__image {
+        width: calc(120 / 320 * 100vw);
+        height: calc(120 / 320 * 100vw);
+        margin: 0 auto 24px auto;
+    }
+}

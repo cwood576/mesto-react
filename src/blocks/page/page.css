@@ -1,0 +1,10 @@
+.page {
+    margin: auto;
+    background-color: black;
+    color: white;
+    font-family: "Inter", "Arial", sans-serif;
+    max-width: 100%;
+}
+::selection{
+    background-color: rgba(0, 110, 255, 0.377);
+}

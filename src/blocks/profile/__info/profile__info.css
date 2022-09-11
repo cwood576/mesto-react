@@ -1,0 +1,6 @@
+.profile__info {
+    align-items: center;
+    white-space: nowrap;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+}
