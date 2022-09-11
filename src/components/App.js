@@ -4,52 +4,68 @@ import Header from '../components/Header';
 import Main from '../components/Main';
 import Footer from '../components/Footer';
 import PopupWithForm from '../components/PopupWithForm';
+import PopupConfirm from './PopupConfirm';
+
 import ImagePopup from '../components/ImagePopup';
 
 function App() {
-    const [isEditProfilePopupOpen, setEditProfilePopupState] = React.useState(false);
-    const [isAddPlacePopupOpen, setAddPlacePopupState] = React.useState(false);
-    const [isEditAvatarPopupOpen, setEditAvatarPopupState] = React.useState(false);
-    const [isImagePopupOpen, setImagePopupState] = React.useState(false);
-    const [selectedCard, setSelectedCard] = React.useState("");
+    const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+    const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+    const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+    const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
+    const [isConfirmPopupOpen, setisConfirmPopupOpen] = React.useState(false);
+
+    const [selectedCard, setSelectedCard] = React.useState({ name: '', link: '' });
     function handleEditAvatarClick() {
-        setEditAvatarPopupState(!isEditAvatarPopupOpen)
+        setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen)
     }
     function handleEditProfileClick() {
-        setEditProfilePopupState(!isEditProfilePopupOpen)
+        setIsEditProfilePopupOpen(!isEditProfilePopupOpen)
     }
     function handleImageClick() {
-        setImagePopupState(!isImagePopupOpen)
+        setIsImagePopupOpen(!isImagePopupOpen)
     }
     function handleAddPlaceClick() {
-        setAddPlacePopupState(!isAddPlacePopupOpen)
+        setIsAddPlacePopupOpen(!isAddPlacePopupOpen)
+    }
+    function handleConfirmClick() {
+        setisConfirmPopupOpen(!isConfirmPopupOpen)
     }
     function closeAllPopups() {
-        setEditProfilePopupState(false)
-        setAddPlacePopupState(false)
-        setEditAvatarPopupState(false)
-        setImagePopupState(false)
+        setIsEditProfilePopupOpen(false)
+        setIsAddPlacePopupOpen(false)
+        setIsEditAvatarPopupOpen(false)
+        setIsImagePopupOpen(false)
+        setisConfirmPopupOpen(false)
+        setSelectedCard({ name: '', link: '' })
     }
     function handleCardClick(card) {
         setSelectedCard(card)
-        handleImageClick(true)
+        handleImageClick()
     }
     return (
         <>
             <Header />
-            <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} />
+            <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} onCardTrashClick={handleConfirmClick} />
             <Footer />
             <ImagePopup isOpen={isImagePopupOpen} selectedCard={selectedCard} onClose={closeAllPopups} />
-            <PopupWithForm name="place" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
-            <PopupWithForm name="avatar" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
-            <PopupWithForm name="profile" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
-            <div className="popup popup_name_confirm ">
-                <div className="popup__container">
-                    <button type="button" className="popup__close popup__close_name_confirm"> </button>
-                    <h2 className="popup__text">Вы уверены?</h2>
-                    <button className="popup__button popup__button_active" type="submit">Да</button>
-                </div>
-            </div>
+            <PopupWithForm name="place" title="Новое место" buttonText="Создать" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
+                <input type="text" name="name" required minLength="2" maxLength="40" className="popup__field popup__field_type_name" placeholder="Название" />
+                <span className="popup__error popup__error_name_name" />
+                <input type="text" name="info" required minLength="2" maxLength="200" className="popup__field popup__field_type_link" placeholder="Ссылка на картинку" />
+                <span className="popup__error popup__error_name_info"></span>
+            </PopupWithForm>
+            <PopupWithForm name="avatar" title="Обновить аватар" buttonText="Сохранить" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
+                <input type="text" name="info" required minLength="2" maxLength="200" className="popup__field popup__field_type_url" placeholder={"Ссылка на картинку"} />
+                <span className="popup__error popup__error_name_info"></span>
+            </PopupWithForm>
+            <PopupWithForm name="profile" title="Редактировать профиль" buttonText="Сохранить" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
+                <input type="text" name="name" required minLength="2" maxLength="40" className="popup__field popup__field_type_name" placeholder="Имя" />
+                <span className="popup__error popup__error_name_name" />
+                <input type="text" name="info" required minLength="2" maxLength="200" className="popup__field popup__field_type_status" placeholder="О себе" />
+                <span className="popup__error popup__error_name_info"></span>
+            </PopupWithForm>
+            <PopupConfirm isOpen={isConfirmPopupOpen} onClose={closeAllPopups} title="Вы уверены?" buttonText="Да" />
         </>
     );
 }

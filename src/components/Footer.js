@@ -3,11 +3,9 @@ import '../index.css';
 
 function Footer() {
     return (
-        <>
-            <footer className="footer">
-                <p className="copyright ">© 2020 Mesto Russia</p>
-            </footer>
-        </>
+        <footer className="footer">
+            <p className="copyright ">© {new Date().getFullYear()} Mesto Russia</p>
+        </footer>
     );
 }
 
