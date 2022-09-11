@@ -1,0 +1,37 @@
+.popup__field {
+    width: calc(((430 - 72) / 430) * 100%);
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
+}
+
+.popup__field:invalid {
+    border-bottom: 1px solid rgba(255, 0, 0, 1);
+}
+
+.popup__field:first-child {
+    margin: 0 auto 0 auto;
+    padding: 13px 0 13px 0;
+}
+
+.popup__field:nth-child(2n) {
+    margin: 0 auto 0 auto;
+    padding: calc(13 / 1280 * 100vw) 0 calc(13 / 1280 * 100vw) 0;
+}
+
+@media screen and (max-width: 678px) {
+    .popup__field:first-child {
+        margin: 0 auto 0 auto;
+    }
+    .popup__field:nth-child(2n) {
+        margin: 0 auto 0 auto;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .popup__field:first-child {
+        margin: 0 auto 0 auto;
+    }
+}
