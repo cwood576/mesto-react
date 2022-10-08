@@ -73,6 +73,9 @@ function App() {
             .then((res) =>{
                 setCurrentUser(res)
             })
+            .then(()=>{
+                closeAllPopups()
+            })
             .catch(err => console.log(err))
         closeAllPopups()
     }
@@ -83,6 +86,7 @@ function App() {
             })
             .then(()=>{
                 event.target.reset()
+                closeAllPopups()
             })
             .catch(err => console.log(err))
 
@@ -112,6 +116,7 @@ function App() {
             // При успешном добавлении карточки, отчищаем инпуты
             .then(()=>{
                 event.target.reset()
+                closeAllPopups()
             })
             .catch(err => console.log(err))
 
