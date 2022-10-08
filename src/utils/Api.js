@@ -16,7 +16,7 @@ export class Api {
             })
     }
 
-    postCard({ title, url }) {
+    postCard({title, url}) {
         return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers, method: 'POST', body: JSON.stringify({
                 name: `${title}`,
@@ -33,11 +33,11 @@ export class Api {
                 return this._getResponseData(res)
             })
     }
-    updateProfileInfo({ name, info }) {
+    updateProfileInfo({ name, description }) {
         return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers, 'Content-Type': 'application/json', method: 'PATCH', body: JSON.stringify({
                 name: `${name}`,
-                about: `${info}`
+                about: `${description}`
             })
         })
             .then(res => {
@@ -45,7 +45,7 @@ export class Api {
             })
     }
 
-    updateAvatar({ avatar }) {
+    updateAvatar(avatar) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             headers: this._headers, 'Content-Type': 'application/json', method: 'PATCH', body: JSON.stringify({
                 avatar: `${avatar}`
@@ -62,16 +62,8 @@ export class Api {
                 return this._getResponseData(res)
             })
     }
-
-    removeLike(id) {
-        return fetch(`${this._baseUrl}/cards/${id}/likes`, { headers: this._headers, method: 'DELETE' })
-            .then((res) => {
-                return this._getResponseData(res)
-            })
-    }
-
-    sendLike(id) {
-        return fetch(`${this._baseUrl}/cards/${id}/likes`, { headers: this._headers, method: 'PUT' })
+    changeLikeCardStatus(id, isLiked){
+        return fetch(`${this._baseUrl}/cards/${id}/likes`, { headers: this._headers, method: `${!isLiked? "PUT" : "DELETE"}`})
             .then((res) => {
                 return this._getResponseData(res)
             })
