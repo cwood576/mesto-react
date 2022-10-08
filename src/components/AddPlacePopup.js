@@ -8,8 +8,7 @@ function AddPlacePopup(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        props.onAddPlace(name.current.value, url.current.value,e)
-        props.onClose()
+        props.onAddPlace(name.current.value, url.current.value,e)       
     } 
     return (
         <PopupWithForm name="place" title="Новое место" buttonText="Создать" handleSubmit={handleSubmit} isOpen={props.isOpen} onClose={props.onClose}>
