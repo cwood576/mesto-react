@@ -20,13 +20,13 @@ function Card(props) {
                 className="card__image"
                 onClick={handleClick}
                 style={{ backgroundImage: `url(${props.card.link})` }}
-            ></div>
+            />
             {isOwn ? (
                 <button
                     type="button "
                     className="card__trash"
                     onClick={handleDeleteClick}
-                ></button>
+                />
             ) : (
                 ""
             )}
@@ -39,7 +39,7 @@ function Card(props) {
                         className={`card__like ${
                             isLiked ? "card__like_active" : ""
                         }`}
-                    ></button>
+                    />
                     <div className="card__like-counter">
                         {props.card.likes.length}
                     </div>

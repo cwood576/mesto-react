@@ -80,7 +80,6 @@ function App() {
                 closeAllPopups()
             })
             .catch((err) => console.log(err))
-        closeAllPopups()
     }
     function handleUpdateAvatar(avatar, event) {
         api.updateAvatar(avatar)
@@ -92,8 +91,6 @@ function App() {
                 closeAllPopups()
             })
             .catch((err) => console.log(err))
-
-        closeAllPopups()
     }
     function handleCardLike(card) {
         let isLiked = card.likes.some((i) => i._id === currentUser._id)

@@ -56,7 +56,7 @@ function EditProfilePopup(props) {
                 onChange={handleDescriptionChange}
                 placeholder="О себе"
             />
-            <span className="popup__error popup__error_name_info"></span>
+            <span className="popup__error popup__error_name_info" />
         </PopupWithForm>
     )
 }
